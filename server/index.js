@@ -10,10 +10,9 @@ require('dotenv').config()
 
 const usersRoutes = require('./routes/users')
 const authRoutes = require('./routes/auth')
+const groupRoutes = require('./routes/groups')
 
 const app = express()
-
-debug(process.env.JWT_SECRET)
 
 app.use(cors({ exposedHeaders: 'x-auth-token'}))
 app.use(helmet())
@@ -23,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/api/users', usersRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/groups', groupRoutes)
 
 const port = config.app.port;
 app.listen(port, () => debug(`Express is listening on port: ${ port }`))
