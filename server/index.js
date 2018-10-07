@@ -6,11 +6,14 @@ const bodyParser = require('body-parser')
 const config = require('./config/config')
 const db = require('./db')()
 const cors = require('cors')
+require('dotenv').config()
 
 const usersRoutes = require('./routes/users')
 const authRoutes = require('./routes/auth')
 
 const app = express()
+
+debug(process.env.JWT_SECRET)
 
 app.use(cors({ exposedHeaders: 'x-auth-token'}))
 app.use(helmet())

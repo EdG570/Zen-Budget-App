@@ -6,7 +6,6 @@ const debug = require('debug')('App')
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
 const jwt = require('jsonwebtoken')
-const secrets = require('../config/secrets')
 
 router.post('/', async (req, res) => {
     const { error } = validate(req.body)
@@ -18,7 +17,7 @@ router.post('/', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     if (!validPassword) return res.status(400).send('Invalid email or password')
 
-    const token = jwt.sign({ _id: user._id }, secrets.jwt)
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
 
     res.header('x-auth-token', token).send({
         email: user.email,

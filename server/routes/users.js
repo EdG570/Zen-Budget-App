@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const debug = require('debug')('App')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const secrets = require('../config/secrets')
 const auth = require('../middleware/auth')
 
 router.get('/me', auth, async (req, res) => {
@@ -33,7 +32,7 @@ router.post('/', async (req, res) => {
     })
 
     await user.save()
-    const token = jwt.sign({ _id: user._id }, secrets.jwt)
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
 
     res.header('x-auth-token', token).send({
         name: user.name, 
