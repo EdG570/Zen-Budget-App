@@ -4,7 +4,7 @@
   "description": "API for Zen Budget App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=dev DEBUG=App nodemon index.js"
   },
   "author": "Ed Glazenski",
   "license": "ISC",
