@@ -6,7 +6,6 @@ const categorySchema = new Schema({
     name: { 
         type: String, 
         required: true, 
-        unique: true, 
         minlength: 2, 
         maxlength: 100 
     },
@@ -25,8 +24,13 @@ const categorySchema = new Schema({
         type: Date
     },
     groupId: {
-        type: mongoose.SchemaTypes.ObjectId
-    }
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Group'
+    },
+    transactions: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Transaction'
+    }]
 })
 
 const Category = mongoose.model('Category', categorySchema)

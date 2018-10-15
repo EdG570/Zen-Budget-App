@@ -6,13 +6,17 @@ const groupSchema = new Schema({
     name: { 
         type: String, 
         required: true, 
-        unique: true, 
         minlength: 2, 
         maxlength: 100 
     },
     userId: {
-        type: mongoose.SchemaTypes.ObjectId
-    }
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'User'
+    },
+    categories: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Category'
+    }]
 })
 
 const Group = mongoose.model('Group', groupSchema)

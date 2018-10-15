@@ -19,7 +19,11 @@ const userSchema = new Schema({
     isActive: {
         type: Boolean,
         default: true
-    }
+    },
+    groups: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Group'
+    }]
 })
 
 const User = mongoose.model('User', userSchema)
